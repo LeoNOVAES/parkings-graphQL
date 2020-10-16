@@ -1,0 +1,45 @@
+type ParkingLots {
+    id: ID!
+    name: String!
+    capacity: Int!
+    sectors: [sectors]!
+}
+
+type sectors {
+    id: ID!
+    name: String!
+}
+
+type city {
+    id: ID!
+    name: String!
+    parkingLots: [ParkingLots]!
+}
+
+input createCity {
+    id: ID!
+    name: String!
+    parkingLots: [createParkingLot]!
+}
+
+input createSectors {
+    id: ID!
+    name: String!
+}
+
+input createParkingLot {
+    id: ID!
+    name: String!
+    capacity: Int!
+    sectors: [createSectors]!
+}
+
+type Query {
+    getCities: [city]!
+    getCityById(id: ID!): city!
+}
+
+type Mutation {
+    addCity(city: createCity): city!
+    deleteCity(id: ID!): String!
+}
